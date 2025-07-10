@@ -1,0 +1,36 @@
+.contents {
+  max-width: 48rem;
+  margin: auto;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+
+  background-color: #aeaeae;
+}
+
+.contentsLogoBox {
+  width: 200px;
+  height: 300px;
+
+  margin: 10px;
+
+  background-color: aqua;
+}
+
+.contentsMBox {
+  width: 200px;
+  height: 300px;
+
+  margin: 10px;
+
+  background-color: aqua;
+}
+
+.contentsMBox:nth-child(2n-1) {
+  background-color: green;
+}
+.contentsMBox:nth-child(2n) {
+  background-color: yellow;
+}
