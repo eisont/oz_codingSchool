@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>5일차 과제</title>
+    <link rel="stylesheet" href="chat.css" />
+    <link rel="stylesheet" href="signup.css" />
+    <style>
+      * {
+        margin: 0 auto;
+      }
+      body {
+        background-color: #000;
+      }
+
+      @media screen and (max-width: 1000px) {
+        .chatBoxbody {
+          display: none;
+        }
+      }
+
+      @keyframes slide {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(100px);
+        }
+      }
+      .chatBoxbody {
+        animation: slide 2s ease-in-out alternate;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="totalBox">
+      <div class="msgBt">💬</div>
+
+      <div class="chatBoxbody">
+        <div class="chatHead">
+          <div class="BackBt"><</div>
+          <div class="HeadTitle">
+            <div class="OZLogo">OZ</div>
+            <div class="chatTitle">
+              <p>오즈코딩스쿨</p>
+              <p>Back on 11:00 AM</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="chatBox3">
+          <div class="chatListLBox">
+            <div class="OZLogo">OZ</div>
+            <div>
+              <div class="chatListTitle">오즈코딩스쿨</div>
+              <div class="chatListComent">
+                안녕하세요! <br />
+                궁금한 게 있으면 편하게 물어봐 주세요.<br />
+                문의해 주시는 <strong>교육 과정명</strong>을 꼭 알려주세요:)
+              </div>
+              <div class="chatListTime">10:00 PM</div>
+            </div>
+          </div>
+
+          <div class="chatListRBox">
+            <div class="chatListComent">
+              안녕하세요 :) <br />
+              프론트엔드 과정 문의하러 왔어요!
+            </div>
+            <div class="chatListTime">10:01 PM</div>
+          </div>
+          <div class="chatListRBox">
+            <div class="chatListComent">
+              안녕하세요 :) <br />
+              프론트엔드 과정 문의하러 왔어요!
+            </div>
+            <div class="chatListTime">10:01 PM</div>
+          </div>
+          <div class="chatListRBox">
+            <div class="chatListComent">
+              안녕하세요 :) <br />
+              프론트엔드 과정 문의하러 왔어요!
+            </div>
+            <div class="chatListTime">10:01 PM</div>
+          </div>
+          <div class="chatListRBox">
+            <div class="chatListComent">
+              안녕하세요 :) <br />
+              프론트엔드 과정 문의하러 왔어요!
+            </div>
+            <div class="chatListTime">10:01 PM</div>
+          </div>
+          <div class="chatListRBox">
+            <div class="chatListComent">
+              안녕하세요 :) <br />
+              프론트엔드 과정 문의하러 왔어요!
+            </div>
+            <div class="chatListTime">10:01 PM</div>
+          </div>
+          <div class="chatListRBox">
+            <div class="chatListComent">
+              안녕하세요 :) <br />
+              프론트엔드 과정 문의하러 왔어요!
+            </div>
+            <div class="chatListTime">10:01 PM</div>
+          </div>
+
+          <div class="chatBox4"></div>
+        </div>
+      </div>
+
+      <h1 class="OZTitle">oz</h1>
+      <div class="signupBox">
+        <div class="titleBox">
+          <div class="h1Title">회원가입</div>
+          <p>OZ코딩스쿨에 오신 것을 환영합니다! 🤗</p>
+        </div>
+        <div class="inputBox">
+          <input type="text" placeholder="이름" />
+          <input type="tel" placeholder="전화번호" />
+          <input type="email" placeholder="이메일" />
+          <input type="password" placeholder="비밀번호" />
+          <input type="date" placeholder="" />
+          <div class="sexRadio"><input type="radio" name="sex" value="femail" />여성 <input type="radio" name="sex" value="mail" />남성 <input type="radio" name="sex" value="other" />해당없음</div>
+        </div>
+        <hr />
+      </div>
+    </div>
+  </body>
+</html>
