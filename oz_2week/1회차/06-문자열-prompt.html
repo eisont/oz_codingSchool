@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>문자열 & window.prompt()</title>
+  </head>
+  <body>
+    <script>
+      let apple;
+      apple = '사과';
+      let banana = '바나나';
+
+      // "" 은 결과 값에 반영이 되지 않는다.
+      console.log(apple);
+      console.log('사과');
+      console.log(apple + '&' + banana);
+
+      // prompt 사용시 ''를 사용해야 함.
+      window.prompt('xx');
+      let answer = prompt('당신이 좋아하는 과일은?');
+      alert(answer);
+    </script>
+  </body>
+</html>
