@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="author" content="김치훈" />
+    <meta name="description" content="연습을 해야지" />
+    <meta name="keywords" content="공부, HTML, 실습" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>설문조사 양식</title>
+  </head>
+  <body>
+    <header>
+      <h1>설문조사 양식</h1>
+    </header>
+
+    <nav>
+      <ul>
+        <li><a href="#">개인 정보</a></li>
+        <li><a href="#">설문 문항</a></li>
+        <li><a href="#">기타</a></li>
+      </ul>
+    </nav>
+
+    <hr />
+
+    <main>
+      <form>
+        <fieldset>
+          <legend>개인정보</legend>
+
+          <ol>
+            <li>
+              <label for="name">이름</label>
+              <input type="text" id="name" placeholder="본명을 입력하세요." name="name" />
+            </li>
+            <li>
+              <label for="name">나이</label>
+              <input type="text" id="name" placeholder="나이을 입력하세요." name="name" />
+            </li>
+            <li>
+              <label for="name">성별</label>
+              <select name="sex" id="">
+                <option value="mail">남성</option>
+                <option value="femail">여성</option>
+              </select>
+            </li>
+            <li>
+              <label for="email">이메일</label>
+              <input type="email" id="email" placeholder="메일 주소 쓰세요." name="email" />
+            </li>
+          </ol>
+        </fieldset>
+        <fieldset>
+          <legend>설문 문항</legend>
+
+          <p>당신의 관심사를 선택해주세요.</p>
+          <!-- radio태그는 name을 일치하게 맞춰주면 선택을 하나만 하게 해준다. -->
+          <ul>
+            <li><input type="checkbox" />스포츠</li>
+            <li><input type="checkbox" />음악</li>
+            <li><input type="checkbox" />영화</li>
+          </ul>
+          <!-- checkbox는 name을 일치하게 맞추면 여러개 선택하게 해준다. -->
+
+          <table>
+            <tr>
+              <th>스포츠</th>
+              <th>음악</th>
+              <th>영화</th>
+            </tr>
+            <tr>
+              <td>야구</td>
+              <td>재즈</td>
+              <td>액션</td>
+            </tr>
+            <tr>
+              <td>축구</td>
+              <td>힙합</td>
+              <td>로맨스</td>
+            </tr>
+          </table>
+        </fieldset>
+
+        <fieldset>
+          <legend>피드백</legend>
+          <textarea rows="3" cols="30" name="comment"></textarea>
+        </fieldset>
+        <input type="submit" />
+      </form>
+    </main>
+
+    <hr />
+
+    <footer>&copy; 2025 설문조사 양식</footer>
+  </body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>양식 만들고 입력 정보 보내기</title>
+  </head>
+  <body>
+    <!-- form은 블록 레벨, 서버에 데이터를 모아서 보내는 역할을 한다. -->
+    <!-- action은 서버에 보낼 주소 -->
+    <!-- method는 서버랑 어떻게 소통할지 결정 -->
+    <form action="none.com" method="post">
+      <label for="name">이름</label>
+      <!-- id는 웹페이지 내에서의 식별자, name은 서버로 전달된 값들 간의 식별자 -->
+      <input id="name" type="text" name="name" />
+      <br />
+      <label for="age">나이</label>
+      <input id="age" type="number" name="age" />
+      <br />
+      <label for="character">성격</label>
+      <textarea id="character" name="character"></textarea>
+      <br />
+      <!-- input에 type을 submit이라고 주면 form에 있는 데이터들을 서버에 보내는 역할을 한다. -->
+      <input type="submit" />
+    </form>
+  </body>
+</html>
