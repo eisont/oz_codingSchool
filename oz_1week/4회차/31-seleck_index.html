@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>선택자 더 알아보기</title>
+    <style>
+      /*
+      기호와 함께 사용하는 속성 선택자
+      * : 값의 포함 여부
+      ^ : 값의 시작 여부
+      $ : 값의 끝 여부
+      */
+      /* 속성 선택자 */
+      [width*='2'] {
+        border: 3px double green;
+      }
+      /* [width ^= "1"] ==> 값이 1으로 시작하는지 요소 선택 */
+      /* [width $= "1"] ==> 끝 값이 1으로 시작하는지 요소 선택 */
+
+      [alt] {
+        border: 5px dashed red;
+      }
+      body p {
+        color: blue;
+      }
+      body em {
+        color: purple;
+      }
+      /* 자식 선택자 */
+      p > em {
+        color: red;
+      }
+      /* + => #sam 바로 인접 선택자 */
+      /* ~ => #sam 바로 전체 선택자 */
+      #sam + p {
+        color: bisque;
+      }
+
+      /* #sam ~ img{} => 이 코드는 올바르지 않다. #sam 뒤 img 태그가 없기 때문이다. 형제 선택자는 뒤이어 등장하는 형제들을 대상으로 한다. */
+    </style>
+  </head>
+  <body>
+    <img src="images/nice.jpeg" width="120" alt="등산" />
+    <img src="images/nice.jpeg" width="120" />
+    <img src="images/nice.jpeg" width="120" id="sam" />
+    <p>등산은 건강에 매우 좋은 운동입니다.</p>
+    <p>인왕산</p>
+    <p>등산은 전신운동이며, <em>살</em>이 잘 빠진다.</p>
+  </body>
+</html>

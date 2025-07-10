@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>위치 정하기</title>
+    <style>
+      .box {
+        width: 100px;
+        height: 100px;
+        color: white;
+        background-color: orange;
+      }
+      .rel {
+        background-color: red;
+        position: relative;
+        /* 기존의 위치가 기준이 된다. */
+        top: 50px;
+        left: 50px;
+      }
+      .abs {
+        /* absolute 요소는 position 속성을 가진 요소를 기준으로 위치를 이동한다. 단, 상위 요소 중에 position 속성을 가진 요소가 없다면 그냥 화면을 기준으로 이동한다. */
+        position: absolute;
+        right: 50px;
+        top: 50px;
+      }
+      .scroll {
+        height: 2000px;
+      }
+      .fixed {
+        position: fixed;
+        right: 50px;
+        bottom: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box abs">1</div>
+    <div class="box rel">2</div>
+    <div class="box scroll">3</div>
+    <div class="box fixed">4</div>
+  </body>
+</html>
