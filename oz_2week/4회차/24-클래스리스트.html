@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>클래스 리스트</title>
+    <style>
+      .pretty {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+      }
+    </style>
+  </head>
+  <body>
+    <img src="nice.jpeg" alt="인왕산 완등 사진" />
+    <br />
+    <button id="add">ADD STYLE</button>
+    <button id="remove">REMOVE STYLE</button>
+    <button id="toggle">TOGGLE STYLE</button>
+
+    <script>
+      const img = document.querySelector('img');
+      const addBtn = document.querySelector('#add');
+      const removeBtn = document.querySelector('#remove');
+      const toggleBtn = document.querySelector('#toggle');
+
+      // class를 추가한다.
+      addBtn.addEventListener('click', function () {
+        img.classList.add('pretty');
+        console.log(img.classList.contains('pretty'));
+      });
+      // class를 제거한다.
+      removeBtn.addEventListener('click', function () {
+        img.classList.remove('pretty');
+        console.log(img.classList.contains('pretty'));
+      });
+      // 있으면 추가하고 없으면 제거하라. => toggle
+      toggleBtn.addEventListener('click', function () {
+        img.classList.toggle('pretty');
+        console.log(img.classList.contains('pretty'));
+      });
+    </script>
+  </body>
+</html>
