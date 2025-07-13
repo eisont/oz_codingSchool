@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>로컬 저장소</title>
+  </head>
+  <body>
+    <p id="item">이봉주</p>
+    <button id="set">SET</button>
+    <button id="get">GET</button>
+    <button id="remove">REMOVE</button>
+    <button id="clear">CLEAR</button>
+
+    <script>
+      const item = document.getElementById('item');
+      document.getElementById('set').addEventListener('click', function () {
+        // 저장하고 싶은 정보를 저장할 수 있다. 단, 문자열만 저장 가능!
+        localStorage.setItem('마라토너', item.textContent);
+      });
+      document.getElementById('get').addEventListener('click', function () {
+        // '마라토너'라는 키를 가진 value 를 반환한다.'
+        alert(localStorage.getItem('마라토너'));
+      });
+
+      document.getElementById('remove').addEventListener('click', function () {
+        // '마라토너' 인 키를 가진 데이터를 지운다.
+        localStorage.removeItem('마라토너');
+      });
+
+      document.getElementById('clear').addEventListener('click', function () {
+        // localStorage에 있는 것들을 모두 지운다.
+        localStorage.clear();
+      });
+
+      // 단순 문자열만 저장이 됩니다. 하지만 다른 것을 저장하고 싶은 경우 -> JSON.stringfy()으로 묶어주면 저장이 됩니다.
+      localStorage.setItem(
+        '커피',
+        JSON.stringify({
+          name: '에티오피아',
+          taste: '산미',
+        })
+      );
+    </script>
+  </body>
+</html>
