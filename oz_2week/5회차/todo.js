@@ -3,88 +3,71 @@ const todoList = document.getElementById('todo-list');
 const todoForm = document.getElementById('todo-form');
 let todoArr = [];
 
-// 로컬 저장소에 저장하기
-function saveTodos() {
-  const todoString = JSON.stringify(todoArr);
-  localStorage.setItem('myTodos', todoString);
-}
-
-// 로컬 저장소에서 가져오기
-function loadTodos() {
-  const myTodos = localStorage.getItem('myTodos');
-  if (myTodos !== null) {
-    todoArr = JSON.parse(myTodos);
-    displayTodos();
-  }
-}
-loadTodos();
-
-// 할일 삭제하기
-function handleTodoDelBtnClick(clickedId) {
-  todoArr = todoArr.filter(function (aTodo) {
-    // 새로 갱신
-    return aTodo.todoId !== clickedId;
-  });
-  displayTodos();
-  saveTodos(); // 로컬저장소에 저장하기
-}
-
-// 할일 수정하기
-function handleTodoItemClick(clickedId) {
-  todoArr = todoArr.map(function (aTodo) {
-    if (aTodo.todoId === clickedId) {
-      return {
-        ...aTodo,
-        todoDone: !aTodo.todoDone,
-      };
-    } else {
-      return aTodo;
-    }
-  });
-  displayTodos();
-  saveTodos(); // 로컬저장소에 저장하기
-}
-
-// 할일 보여주기
+// displayTodos 함수
 function displayTodos() {
   todoList.innerHTML = '';
-  todoArr.forEach(function (aTodo) {
+  todoArr.forEach((aTodo) => {
     const todoItem = document.createElement('li');
-    todoDelBtn = document.createElement('span'); // 삭제버튼 만들기
-    todoDelBtn.textContent = 'x';
-    todoItem.textContent = aTodo.todoText;
-    todoItem.title = '클릭하면 완료됨';
-    if (aTodo.todoDone) {
-      todoItem.classList.add('done');
-    } else {
-      todoItem.classList.add('yet');
-    }
-    todoDelBtn.title = '클릭하면 삭제됨';
-
-    todoItem.addEventListener('click', function () {
-      handleTodoItemClick(aTodo.todoId);
-    });
-
+    const todoDelBtn = document.createElement('span');
+    todoDelBtn.innerText = 'x';
+    todoDelBtn.title = '클릭시 삭제';
+    todoItem.innerText = aTodo.todoText;
+    todoItem.title = '클릭시 완료';
+    todoItem.classList.add(aTodo.todoDone ? 'done' : 'yet');
+    todoItem.appendChild(todoDelBtn);
     todoDelBtn.addEventListener('click', function () {
       handleTodoDelBtnClick(aTodo.todoId);
     });
-
-    todoItem.appendChild(todoDelBtn);
+    todoItem.addEventListener('click', function () {
+      handleTodoItemClick(aTodo.todoId);
+    });
     todoList.appendChild(todoItem);
   });
 }
 
-// 할일 추가하기
+// handleTodoDelBtnClick 함수
+function handleTodoDelBtnClick(clickedId) {
+  todoArr = todoArr.filter(function (aTodo) {
+    return aTodo.todoId !== clickedId;
+  });
+  displayTodos();
+  saveTodos();
+}
+
+// handleTodoItemClick 함수
+function handleTodoItemClick(clickedId) {
+  todoArr = todoArr.map(function (aTodo) {
+    return aTodo.todoId !== clickedId ? aTodo : { ...aTodo, todoDone: !aTodo.todoDone };
+  });
+  displayTodos();
+  saveTodos();
+}
+
+// saveTodos 함수
+function saveTodos() {
+  const todoSting = JSON.stringify(todoArr);
+  localStorage.setItem('myTodos', todoSting);
+}
+
+// loadTodos 함수
+function loadTodos() {
+  const myTodos = localStorage.getItem('myTodos');
+  todoArr = myTodos !== null ? JSON.parse(myTodos) : todoArr;
+  displayTodos();
+}
+
+// 할일 입력 후 제출하면 발생하는 이벤트 핸들링
 todoForm.addEventListener('submit', function (e) {
-  e.preventDefault(); // submit의 기본기능인 새로고침을 없앰
+  e.preventDefault();
   const toBeAdded = {
-    todoText: todoForm.todo.value, // 작성한 값
-    todoId: new Date().getTime(), // 고유한 값을 부여
+    todoText: todoForm.todo.value,
+    todoId: new Date().getTime(),
     todoDone: false,
   };
-  todoForm.todo.value = ''; // 입력란 빈칸으로 만들기
+  todoForm.todo.value = '';
   todoArr.push(toBeAdded);
-
   displayTodos();
-  saveTodos(); // 로컬저장소에 저장하기
+  saveTodos();
 });
+
+loadTodos(); // 시작할 때 한번만!
