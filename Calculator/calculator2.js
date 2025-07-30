@@ -1,9 +1,10 @@
+let previousRecords = [];
 let result = [];
-let overflow = []; // 보이는 배열
-let ddd = [];
+
+const previousRecord = document.querySelector('.previousRecord');
 const display = document.querySelector('.display');
 const buttonItem = document.querySelector('.buttons');
-const operatorArr = ['+', '-', '*', '/'];
+const operator = ['+', '-', '*', '/'];
 
 buttonItem.addEventListener('click', (event) => {
   const target = event.target;
@@ -12,46 +13,46 @@ buttonItem.addEventListener('click', (event) => {
 
   let lastOpIndex = -1;
   for (let i = result.length - 1; i >= 0; i--) {
-    // 수식 찾기
-    if (operatorArr.includes(result[i])) {
+    if (operator.includes(result[i])) {
       lastOpIndex = i;
       break;
     }
   }
-  const currentNumber = result.slice(lastOpIndex + 1).join(''); // 현재 숫자 확인
+
+  const currentNumber = result.slice(lastOpIndex + 1).join(''); // 연산자 다음 숫자 확인
 
   if (value === '.' && currentNumber.includes('.')) return; // 소수점 중복 방지
 
   if (target.classList.contains('number')) {
     result.push(value);
-    overflow.push(value);
-    display.textContent = overflow.join('');
   } else if (target.classList.contains('operator')) {
-    // 수식은 한번만 눌리게 만든다.
     let last = result[result.length - 1];
-    if (operatorArr.includes(last)) {
+    if (operator.includes(last)) {
       result[result.length - 1] = value;
     } else {
       result.push(value);
-      overflow = [];
     }
-    let www = eval(result.slice(0, result.length - 1).join(''));
-    result.splice(0, result.length - 1, `${www}`);
-    display.textContent = result[0];
-    console.log(`firstOperand: ${result.slice(0, lastOpIndex).join('')}, operator: ${value}`);
   } else if (value === 'AC') {
-    result = [];
-    overflow = [];
-    display.textContent = result.join('') || '0';
+    result = []; // 배열 빈 배열
+    previousRecords = [];
+    previousRecord.textContent = previousRecords;
   } else if (value === '+/-') {
   } else if (value === '%') {
   } else if (value === '=') {
-    const answer = eval(result.join(''));
-    display.textContent = answer;
-    result = [String(answer)];
+    let formula = result.join('');
+    try {
+      previousRecords.push(formula);
+      previousRecord.textContent = formula;
+      const answer = eval(formula);
+      display.textContent = answer;
+      result = [String(answer)]; // 다음 계산을 이어가기 위해 배열안에 문자열로 삽입
+    } catch (e) {
+      display.textContent = 'error';
+    }
   }
+  display.textContent = result.join('') || '0';
 
-  const length = display.textContent.length;
+  const length = result.length;
   if (length >= 13) display.style.fontSize = '20px';
   else if (length > 6) display.style.fontSize = '35px';
   else display.style.fontSize = '60px';
