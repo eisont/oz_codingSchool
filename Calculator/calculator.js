@@ -1,7 +1,10 @@
 let result = [];
-let overflow = []; // 보이는 배열
-let previousRecords = [];
+let visibleNum = []; // 보이는 배열
+let previousRecordArr = [];
+let buttonCondition = true;
 
+const clear = document.querySelector('.clear');
+const allClear = document.querySelector('.allClear');
 const previousRecord = document.querySelector('.previousRecord');
 const display = document.querySelector('.display');
 const buttonItem = document.querySelector('.buttons');
@@ -10,11 +13,12 @@ const operatorArr = ['+', '-', '*', '/'];
 buttonItem.addEventListener('click', (event) => {
   const target = event.target;
   const value = target.value;
-  if (!value) return;
 
+  if (!value) return; // 버튼 외 클릭시 리턴!
+
+  // 수식이 들어간 자리 찾기
   let lastOpIndex = -1;
   for (let i = result.length - 1; i >= 0; i--) {
-    // 수식 찾기
     if (operatorArr.includes(result[i])) {
       lastOpIndex = i;
       break;
@@ -22,41 +26,70 @@ buttonItem.addEventListener('click', (event) => {
   }
   const currentNumber = result.slice(lastOpIndex + 1).join(''); // 현재 숫자 확인
 
-  if (value === '.' && currentNumber.includes('.')) return; // 소수점 중복 방지
+  // 소수점 중복 방지
+  if (value === '.' && currentNumber.includes('.')) return;
 
+  // 숫자 클릭시
   if (target.classList.contains('number')) {
     result.push(value);
-    overflow.push(value);
-    display.textContent = overflow.join('');
-  } else if (target.classList.contains('operator')) {
-    // 수식은 한번만 눌리게 만든다.
+    visibleNum.push(value);
+    display.textContent = visibleNum.join('');
+  }
+  // 수식 클릭시
+  else if (target.classList.contains('operator')) {
+    // 수식은 한번만!!!
     let last = result[result.length - 1];
     if (operatorArr.includes(last)) {
       result[result.length - 1] = value;
     } else {
       result.push(value);
-      overflow = [];
+      visibleNum = [];
     }
+    previousRecord.textContent = [];
     let previousCalculationResult = eval(result.slice(0, result.length - 1).join(''));
-    previousRecord.textContent = result.slice(0, result.length - 1).join('');
     result.splice(0, result.length - 1, `${previousCalculationResult}`);
     display.textContent = result[0];
-
-    console.log(`firstOperand: ${result.slice(0, lastOpIndex).join('')}, operator: ${value}`);
-  } else if (value === 'AC') {
+  }
+  // AC 버튼 클릭시
+  else if (value === 'AC') {
     result = [];
-    overflow = [];
+    visibleNum = [];
+    previousRecordArr = [];
     display.textContent = result.join('') || '0';
-  } else if (value === '+/-') {
-  } else if (value === '%') {
-  } else if (value === '=') {
+    previousRecord.textContent = previousRecordArr.join('');
+  }
+  // = 버튼 클릭시
+  else if (value === '=') {
+    previousRecord.textContent = result.join('');
     const answer = eval(result.join(''));
     display.textContent = answer;
     result = [String(answer)];
+    buttonCondition = false;
+  }
+  // clear 버튼 클릭시
+  else if (value === 'clear') {
+    console.log('clear 클릭함');
+    result.pop();
+    visibleNum.pop();
+    display.textContent = result.join('') || '0';
+  }
+  // 아직 추가 안한 기능
+  else if (value === '+/-') {
+  } else if (value === '%') {
   }
 
+  // 글자 갯수에 따라 글자 크기 조정
   const length = display.textContent.length;
   if (length >= 13) display.style.fontSize = '20px';
   else if (length > 6) display.style.fontSize = '35px';
   else display.style.fontSize = '60px';
+
+  // 버튼 활성 / 비활성
+  if (result.length > 0 && buttonCondition) {
+    clear.style.display = 'block';
+    allClear.style.display = 'none';
+  } else {
+    clear.style.display = 'none';
+    allClear.style.display = 'block';
+  }
 });
