@@ -1,5 +1,8 @@
 let result = [];
 let overflow = []; // 보이는 배열
+let previousRecords = [];
+
+const previousRecord = document.querySelector('.previousRecord');
 const display = document.querySelector('.display');
 const buttonItem = document.querySelector('.buttons');
 const operatorArr = ['+', '-', '*', '/'];
@@ -34,9 +37,11 @@ buttonItem.addEventListener('click', (event) => {
       result.push(value);
       overflow = [];
     }
-    let www = eval(result.slice(0, result.length - 1).join(''));
-    result.splice(0, result.length - 1, `${www}`);
+    let previousCalculationResult = eval(result.slice(0, result.length - 1).join(''));
+    previousRecord.textContent = result.slice(0, result.length - 1).join('');
+    result.splice(0, result.length - 1, `${previousCalculationResult}`);
     display.textContent = result[0];
+
     console.log(`firstOperand: ${result.slice(0, lastOpIndex).join('')}, operator: ${value}`);
   } else if (value === 'AC') {
     result = [];
