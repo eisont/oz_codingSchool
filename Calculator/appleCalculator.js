@@ -1,5 +1,7 @@
-let previousRecords = [];
+// 아이폰 계산기 따라만들기
+
 let result = [];
+let previousRecords = [];
 
 const previousRecord = document.querySelector('.previousRecord');
 const display = document.querySelector('.display');
