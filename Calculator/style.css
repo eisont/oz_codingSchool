@@ -107,3 +107,13 @@ button {
   width: 119px;
   border-radius: 55px;
 }
+
+.gray {
+  background-color: #6d6f71;
+}
+.darkGray {
+  background-color: #4f5153;
+}
+.orange {
+  background-color: #ff9500;
+}
