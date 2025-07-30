@@ -1,6 +1,5 @@
 let result = [];
 let overflow = []; // 보이는 배열
-let ddd = [];
 const display = document.querySelector('.display');
 const buttonItem = document.querySelector('.buttons');
 const operatorArr = ['+', '-', '*', '/'];
