@@ -31,6 +31,7 @@ buttonItem.addEventListener('click', (event) => {
 
   // 숫자 클릭시
   if (target.classList.contains('number')) {
+    previousRecord.textContent = previousRecordArr.join('');
     result.push(value);
     visibleNum.push(value);
     display.textContent = visibleNum.join('');
@@ -46,6 +47,8 @@ buttonItem.addEventListener('click', (event) => {
       visibleNum = [];
     }
     previousRecord.textContent = [];
+    buttonCondition = true;
+
     let previousCalculationResult = eval(result.slice(0, result.length - 1).join(''));
     result.splice(0, result.length - 1, `${previousCalculationResult}`);
     display.textContent = result[0];
@@ -55,23 +58,27 @@ buttonItem.addEventListener('click', (event) => {
     result = [];
     visibleNum = [];
     previousRecordArr = [];
+    buttonCondition = true;
     display.textContent = result.join('') || '0';
     previousRecord.textContent = previousRecordArr.join('');
   }
+  // clear 버튼 클릭시
+  else if (value === 'clear') {
+    result.pop();
+    visibleNum.pop();
+    display.textContent = visibleNum.join('') || '0';
+  }
   // = 버튼 클릭시
   else if (value === '=') {
+    if (!visibleNum.length) return;
     previousRecord.textContent = result.join('');
     const answer = eval(result.join(''));
     display.textContent = answer;
     result = [String(answer)];
     buttonCondition = false;
-  }
-  // clear 버튼 클릭시
-  else if (value === 'clear') {
-    console.log('clear 클릭함');
-    result.pop();
-    visibleNum.pop();
-    display.textContent = result.join('') || '0';
+    result = [];
+    visibleNum = [];
+    previousRecordArr = [];
   }
   // 아직 추가 안한 기능
   else if (value === '+/-') {
@@ -85,7 +92,7 @@ buttonItem.addEventListener('click', (event) => {
   else display.style.fontSize = '60px';
 
   // 버튼 활성 / 비활성
-  if (result.length > 0 && buttonCondition) {
+  if (visibleNum.length && buttonCondition) {
     clear.style.display = 'block';
     allClear.style.display = 'none';
   } else {
