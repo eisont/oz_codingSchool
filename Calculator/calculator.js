@@ -50,7 +50,7 @@ buttonItem.addEventListener('click', (event) => {
     buttonCondition = true;
 
     let previousCalculationResult = eval(result.slice(0, result.length - 1).join(''));
-    result.splice(0, result.length - 1, `${previousCalculationResult}`);
+    result.splice(0, result.length - 1, `${previousCalculationResult || '0'}`);
     display.textContent = result[0];
   }
   // AC 버튼 클릭시
@@ -76,7 +76,7 @@ buttonItem.addEventListener('click', (event) => {
     display.textContent = answer;
     result = [String(answer)];
     buttonCondition = false;
-    result = [];
+    // result = [];
     visibleNum = [];
     previousRecordArr = [];
   }
