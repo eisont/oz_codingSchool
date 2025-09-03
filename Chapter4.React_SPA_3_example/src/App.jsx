@@ -8,7 +8,7 @@ import { useState } from 'react';
 const App = () => {
   const [inputValue, setInputValue] = useState('');
   const navigate = useNavigate();
-  console.log(navigate);
+
   return (
     <>
       <header>

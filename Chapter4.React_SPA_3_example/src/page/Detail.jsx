@@ -3,6 +3,7 @@ import { data } from '../assets/data/data';
 
 const Detail = () => {
   const params = useParams();
+  console.log(params);
   const animalData = data.find((el) => el.id === Number(params.id));
 
   return (
